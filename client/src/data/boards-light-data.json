@@ -1,0 +1,178 @@
+[
+  {
+    "id": "badBoys_interaction_v1",
+    "settings": {
+      "position": [-3.73, 5.46, -6],
+      "rotation": [0, 0, 0],
+      "size": [1, 1.2]
+    }
+  },
+  {
+    "id": "21jumpStreet_interaction_v1",
+    "settings": {
+      "position": [-1.95, 5.46, -6],
+      "rotation": [0, 0, 0],
+      "size": [1, 1.2]
+    }
+  },
+  {
+    "id": "bohemianRhapsody_interaction_v1",
+    "settings": {
+      "position": [-0.15, 5.46, -6],
+      "rotation": [0, 0, 0],
+      "size": [1, 1.2]
+    }
+  },
+  {
+    "id": "fordVFerrari_interaction_v1",
+    "settings": {
+      "position": [1.68, 5.46, -6],
+      "rotation": [0, 0, 0],
+      "size": [1, 1.2]
+    }
+  },
+  {
+    "id": "interstellar_interaction_v1",
+    "settings": {
+      "position": [5.28, 5.46, -6],
+      "rotation": [0, 0, 0],
+      "size": [1, 1.2]
+    }
+  },
+  {
+    "id": "fear&Loathing_interaction_v1",
+    "settings": {
+      "position": [7.02, 5.46, -6],
+      "rotation": [0, 0, 0],
+      "size": [1, 1.2]
+    }
+  },
+  {
+    "id": "kolya_interaction_v1",
+    "settings": {
+      "position": [7.93, 5.46, -4.8],
+      "rotation": [0, 4.67, 0],
+      "size": [1, 1.2]
+    }
+  },
+  {
+    "id": "lebanon_interaction_v1",
+    "settings": {
+      "position": [7.93, 5.46, -3.18],
+      "rotation": [0, 4.67, 0],
+      "size": [1, 1.2]
+    }
+  },
+  {
+    "id": "likeWater4Chocolate_interaction_v1",
+    "settings": {
+      "position": [7.93, 5.46, -1.44],
+      "rotation": [0, 4.67, 0],
+      "size": [1, 1.2]
+    }
+  },
+  {
+    "id": "madMaxFuryRoad_interaction_v1",
+    "settings": {
+      "position": [7.93, 5.46, 0.24],
+      "rotation": [0, 4.67, 0],
+      "size": [1, 1.2]
+    }
+  },
+  {
+    "id": "manOnFire_interaction_v1",
+    "settings": {
+      "position": [7.93, 5.46, 1.98],
+      "rotation": [0, 4.67, 0],
+      "size": [1, 1.2]
+    }
+  },
+  {
+    "id": "mr&MrsSmith_interaction_v1",
+    "settings": {
+      "position": [7.93, 5.46, 3.67],
+      "rotation": [0, 4.67, 0],
+      "size": [1, 1.2]
+    }
+  },
+  {
+    "id": "empireStrikesBack_interaction_v1",
+    "settings": {
+      "position": [7.93, 5.46, 5.36],
+      "rotation": [0, 4.67, 0],
+      "size": [1, 1.2]
+    }
+  },
+  {
+    "id": "backToFuture_interaction_v1",
+    "settings": {
+      "position": [-4.37, 1.9, -6.83],
+      "rotation": [0,0, 0],
+      "size": [1, 1.2]
+    }
+  },
+  {
+    "id": "gunShy_interaction_v1",
+    "settings": {
+      "position": [3.43, 5.46, -6],
+      "rotation": [0, 0, 0],
+      "size": [1, 1.2]
+    }
+  },
+  {
+    "id": "the_big_lebowski_interaction_v1",
+    "settings": {
+      "position": [-2.81, 1.9, -6.83],
+      "rotation": [0, 0, 0],
+      "size": [1, 1.2]
+    }
+  },
+  {
+    "id": "bladeRunner_interaction_v1",
+    "settings": {
+      "position": [4.82, 1.9, -6.83],
+      "rotation": [0, 0, 0],
+      "size": [1, 1.2]
+    }
+  },
+  {
+    "id": "planetOfTheApes_interaction_v1",
+    "settings": {
+      "position": [6.67, 1.9, -6.83],
+      "rotation": [0, 0, 0],
+      "size": [1, 1.2]
+    }
+  },
+  {
+    "id": "theGodfather_interaction_v1",
+    "settings": {
+      "position": [7.93, 2.18, -4.37],
+      "rotation": [0, 4.67, 0],
+      "size": [1, 1.2]
+    }
+  },
+  {
+    "id": "theShining_interaction_v1",
+    "settings": {
+      "position": [7.93, 2.18, -2.49],
+      "rotation": [0, 4.67, 0],
+      "size": [1, 1.2]
+    }
+  },
+  {
+    "id": "scriptBoard_interaction_v1",
+    "settings": {
+      "position": [0.04, 1.75, -6.56],
+      "rotation": [0, 0, 0],
+      "size": [3.7,2]
+    }
+  },
+  {
+    "id": "Us_interaction_v1",
+    "settings": {
+      "position": [3.03, 1.9, -6.83],
+      "rotation": [0, 0, 0],
+      "size": [1, 1.2]
+    }
+  }
+]
