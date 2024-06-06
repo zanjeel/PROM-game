@@ -11,6 +11,7 @@ export const ObjectsColliders = () => {
   const colliders04 = useLoader(GLTFLoader, "/assets/3d/colliders04.glb");
   const colliders05 = useLoader(GLTFLoader, "/assets/3d/colliders05.glb");
   const colliders06 = useLoader(GLTFLoader, "/assets/3d/colliders06.glb");
+  const stairs = useLoader(GLTFLoader, "/assets/3d/stairs.glb");
 
   const colliders = [
     colliders01,
@@ -19,6 +20,7 @@ export const ObjectsColliders = () => {
     colliders04,
     colliders05,
     colliders06,
+
   ];
 
   useEffect(() => {
@@ -28,7 +30,7 @@ export const ObjectsColliders = () => {
   return (
     <>
       {colliders.map((col, idx) => (
-        <RigidBody type="fixed" key={idx.toString()}>
+        <RigidBody type="fixed" key={idx.toString()} >
           <mesh visible={visible}>
             <primitive object={col.scene} />
           </mesh>

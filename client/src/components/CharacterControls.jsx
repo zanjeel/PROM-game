@@ -7,7 +7,10 @@ import useAppStore from "../store/store";
 import { useEffect, useMemo, useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from 'three';
-import { MaleChar } from "./MaleChar";
+import { Avatar } from "./Avatar";
+import { charactersAtom, socket } from "./SocketManager";
+import {useAtom} from "jotai"
+
 
 
 function CharacterControls() {
@@ -19,7 +22,7 @@ function CharacterControls() {
 	const controls = useKeyboardControls((state) => state);
 
 	const rigidbody = useRef();
-	const character = useRef();
+	const characterRef = useRef();
 	const controlsRef = useRef();
 
 	const walkDirection = useMemo(() => new Vector3(), []);
@@ -34,16 +37,17 @@ function CharacterControls() {
 	let moveZ;
 
 
-    
-	
-    // Following camera to character
+    const [characters]= useAtom(charactersAtom)
+	// console.log("characters", characters)
+   // Following camera to character
     useFrame(({ camera }) => {
-        if (character.current && characterState === "run") {
+		//works without character.current too
+        if (characterRef.current && characterState === "run") {
             const position = new THREE.Vector3();
             const quaternion = new THREE.Quaternion();
 
             // Decompose the character's world matrix to get global position and rotation
-            character.current.matrixWorld.decompose(position, quaternion, new THREE.Vector3());
+            characterRef.current.matrixWorld.decompose(position, quaternion, new THREE.Vector3());
 
             // Calculate the backward direction from the character
             const backward = new THREE.Vector3(0, 0, 1); // Default backward direction
@@ -83,17 +87,17 @@ function CharacterControls() {
 		updateCameraTarget(0, 0, vec3(rigidbody.current.translation()));
 	}, []);
 
-	useEffect(() => {
-		if (Object.keys(controls).some((key) => controls[key])) {
-			setCharacterState("run");
-		} else {
-			setCharacterState("idle");
-		}
+	// useEffect(() => {
+	// 	if (Object.keys(controls).some((key) => controls[key])) {
+			
+	// 	} else {
+	// 		setCharacterState("idle");
+	// 	}
         
-	}, [controls, setCharacterState]);
+	// }, [controls, setCharacterState]);
 
 	useFrame((state, delta) => {
-		if (characterState === "run") {
+		if (user==id && Object.keys(controls).some((key) => controls[key])) {
 			position = vec3(rigidbody.current.translation());
 
 			angleYCameraDirection = Math.atan2(
@@ -108,45 +112,87 @@ function CharacterControls() {
 				angleYCameraDirection + newDirectionOffset
 			);
 
-			character.current.quaternion.rotateTowards(rotateQuaternion, 0.2);
+			characterRef.current.quaternion.rotateTowards(rotateQuaternion, 0.2);
 
 			camera.getWorldDirection(walkDirection);
 			walkDirection.y = 0;
 			walkDirection.normalize();
 			walkDirection.applyAxisAngle(rotateAngle, newDirectionOffset);
 
-			moveX = walkDirection.x * delta;
-			moveZ = walkDirection.z * delta;
+			moveX = walkDirection.x * 0.08;
+			moveZ = walkDirection.z * 0.08;
 
 			rigidbody.current.setTranslation(
-				{ x: position.x + moveX, y: position.y, z: position.z + moveZ },
+				{ x: position.x + moveX, 
+				  y: position.y, 
+				  z: position.z + moveZ },
 				true
 			);
 
 			updateCameraTarget(moveX, moveZ, position);
+			setCharacterState("run");
+			// Send movement data to server
+			socket.emit("move", [position.x + moveX, position.y, position.z + moveZ]
+			);
+
+			//Emit movement update to the server for each character
+			// characters.forEach((character) => {
+			// 	socket.emit("characterMove", {
+			// 		id: character.id,
+			// 		position: [position.x + moveX, position.y, position.z + moveZ]
+			// 	});
+			// });
+		}
+		else {
+			setCharacterState("idle");
 		}
 	});
-
+	console.log("characters CharacterController:", characters)
 	return (
 		<>
-			<OrbitControls ref={controlsRef} enableZoom={false} enablePan={false}></OrbitControls>
-		
+	  <OrbitControls ref={controlsRef} enableZoom={false} enablePan={false}></OrbitControls>
+		{characters.map((character) => (	
 			<RigidBody
 				ref={rigidbody}
 				enabledRotations={[false, false, false]}
-                position={[0, 0.1, 0]}
+                position= {new THREE.Vector3(
+				character.position[0], 
+				character.position[1],
+				character.position[2])}
 				linearDamping={6}
 				colliders={false}
                 
 			>
-				<CapsuleCollider args={[0.8, 0.4]} position={[0, 1.2, 0]} />
+				<CapsuleCollider 
+				args={[0.8, 0.4]} 
+				position= {new THREE.Vector3(
+					character.position[0], 
+					character.position[1] + 1.1,
+					character.position[2])} 
+				/>
 
-				<group ref={character}>
-					<MaleChar></MaleChar>
-					{/* <Demon></Demon> */}
-				</group>
+				{/* <group ref={characterRef}>
+					<MaleChar/>
+				</group> */}
+				
+				
+					<group ref={characterRef}>		
+						<Avatar
+						id= {character.id}
+						key= {character.id}
+						position= {new THREE.Vector3(
+							character.position[0], 
+							character.position[1],
+							character.position[2])}
+						/>
+					</group>
+				
+
+					
+				
 			</RigidBody>
-		</>
+	  ))}
+	</>
 	);
 }
 

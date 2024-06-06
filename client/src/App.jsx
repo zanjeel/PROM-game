@@ -10,6 +10,9 @@ import { Loader } from "@react-three/drei";
 import { KeyboardControls } from "@react-three/drei";
 import { Scene } from "./components/scene";
 import { Ambience } from "./components/Ambience";
+import { SocketManager } from "./components/SocketManager";
+import { IconInfo } from "./components/IconInfo";
+
 function App() {
   const [loading, setLoading] = useState(true);
   const controls= useRef()
@@ -35,20 +38,24 @@ function App() {
       <Logo />
       <Modal />
       <ToolsBar />
-
+      <IconInfo/>
       <KeyboardControls map={map}>
+      <SocketManager/>
+
 
       <Canvas className="canvas-scene">
         <Ambience/>
         <Suspense fallback={null}>
-          <Physics debug>
-          
+          <Physics >
+       
             <OrbitControls enableZoom={false} enablePan={false}></OrbitControls>
+
             <Scene onLoaded={handleLoaded} />
           </Physics>
-          <Environment preset="sunset" background />
+          <Environment preset="forest" background />
         </Suspense>
       </Canvas>
+
 
       </KeyboardControls>
 

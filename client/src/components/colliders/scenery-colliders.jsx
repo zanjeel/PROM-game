@@ -21,23 +21,39 @@ export const SceneryColliders = () => {
         position={[5.23, 2.2, -2.6]}
         scale={[0.33, 0.92, 5.4]}
         rotation={[0.75, 0, 0]}
+        friction={1}
       >
         <Box>
           <meshStandardMaterial visible={false} />
         </Box>
       </RigidBody>
-      <RigidBody
+
+      {/* <RigidBody
         name="stair-bottom"
-        type="fixed"
+        type="static"
         position={[4.44, 1.4, -2.2]}
         scale={[1.4, 0.3, 6.4]}
         rotation={[0.76, 0, 0]}
-        friction={0}
+        
+      >
+        <Box>
+          <meshStandardMaterial visible={false} />
+        </Box>
+      </RigidBody> */}
+
+      
+      <RigidBody
+        name="stairs"
+        type="fixed"
+        position={[4.44, 1.7, -2.3]} 
+        rotation={[ -Math.PI/4,- Math.PI / 1000, -Math.PI/2]}    scale={[5.4, 1.4, 0.2]}
+        friction={10}
       >
         <Box>
           <meshStandardMaterial visible={false} />
         </Box>
       </RigidBody>
+      
       <RigidBody
         name="rails-left-0"
         type="fixed"
@@ -126,6 +142,7 @@ export const SceneryColliders = () => {
           <meshStandardMaterial visible={false} />
         </Box>
       </RigidBody>
+      
       <RigidBody
         name="mezzanine-front"
         type="fixed"
@@ -137,6 +154,7 @@ export const SceneryColliders = () => {
           <meshStandardMaterial visible={false} />
         </Box>
       </RigidBody>
+
       <RigidBody
         name="wall-behind"
         type="fixed"
@@ -148,6 +166,7 @@ export const SceneryColliders = () => {
           <meshStandardMaterial visible={false} />
         </Box>
       </RigidBody>
+
       <RigidBody
         name="wall-front-downstairs"
         type="fixed"
@@ -159,6 +178,7 @@ export const SceneryColliders = () => {
           <meshStandardMaterial visible={false} />
         </Box>
       </RigidBody>
+
       <RigidBody
         name="wall-front-upstairs"
         type="fixed"
@@ -170,6 +190,7 @@ export const SceneryColliders = () => {
           <meshStandardMaterial visible={false} />
         </Box>
       </RigidBody>
+      
       <RigidBody
         name="wall-left"
         type="fixed"
@@ -194,7 +215,7 @@ export const SceneryColliders = () => {
       </RigidBody>
       <RigidBody
         name="ceiling"
-        type="fixed"
+        type="fixed" 
         position={[1.65, 7.24, 0]}
         scale={[15, 0.15, 15]}
         rotation={[0, 0, 0]}

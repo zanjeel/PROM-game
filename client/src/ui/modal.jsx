@@ -21,6 +21,14 @@ export const Modal = () => {
     }
   }, [highlighted]);
 
+  const redirectToWebsite = () => {
+    // Check if movieData has linkbtn property and it's not empty
+    if (movieData && movieData.linkbtn) {
+      const websiteUrl = movieData.linkbtn;
+      window.open(websiteUrl, "_blank"); // Opens in a new tab/window
+    }
+  };
+
   return (
     highlighted &&
     isUiOpen &&
@@ -40,6 +48,11 @@ export const Modal = () => {
           <div className="modal-body">
             <img src={movieData.coverArtUrl} width={400} />
             {movieData.description}
+
+            <button className="website-button" onClick={redirectToWebsite}>
+              <b>Go to Website</b>
+           </button>
+
           </div>
         </div>
       </div>
